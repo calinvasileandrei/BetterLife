@@ -1,0 +1,50 @@
+.logo {
+  height: 32px;
+  margin: 16px;
+  margin-top: 32px;
+  margin-bottom: 32px;
+}
+
+.sider {
+  overflow: auto;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+}
+
+.site-layout {
+  margin-left: 200px;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.content-layout {
+  padding: 24px;
+  text-align: center;
+  height: calc(100vh - 64px);
+}
+
+.scrollabel-list {
+  display: inline-block;
+  align-self: flex-center;
+  overflow-y: scroll;
+  height: calc((100vh - 64px) * 0.65);
+  width: 100%;
+}
+
+.progress-style {
+  display: inline-block;
+  align-self: flex-center;
+  height: calc((100vh - 64px) * 0.3);
+}
+
+.mealinfo-box {
+  overflow-y: scroll;
+  max-height: 512px;
+}
+
+.custom-card {
+  border-radius: 12px;
+  margin: 15px;
+}
