@@ -1,0 +1,57 @@
+.fullHeightVh {
+  height: 100vh;
+}
+
+.fullHeight {
+  height: 100%;
+}
+
+.fullWidthVw {
+  width: 100vw;
+}
+
+.fullWidth {
+  width: 100%;
+}
+
+.centerElementH {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.centerElementV {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.spaceBetweenElementH {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  vertical-align: space-between;
+}
+
+.spaceBetweenElementV {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: space-between;
+}
+
+.spaceAroundElementH {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  vertical-align: space-around;
+}
+
+.spaceAroundElementV {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  vertical-align: space-around;
+}
