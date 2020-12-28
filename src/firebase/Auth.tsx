@@ -13,6 +13,7 @@ export const AuthProvider = ({ children }: any) => {
       state.currentUser.set(user)
       state.pending.set(false)
     })
+    // eslint-disable-next-line
   }, [])
 
   if (state.pending.get()) {
