@@ -1,18 +1,27 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import app from './FirebaseContext'
-
-export const AuthContext = React.createContext<any>(null)
+import { useState } from '@hookstate/core'
+import globalState from '../state/GlobalState'
+import { Spin } from 'antd'
+import '../style/global.css'
 
 export const AuthProvider = ({ children }: any) => {
-  const [currentUser, setCurrentUser]: any = useState<any>(null)
+  const state = useState(globalState)
 
   useEffect(() => {
-    app.auth().onAuthStateChanged(setCurrentUser)
+    app.auth().onAuthStateChanged((user: any) => {
+      state.currentUser.set(user)
+      state.pending.set(false)
+    })
   }, [])
 
-  return (
-    <AuthContext.Provider value={{ currentUser }}>
-      {children}
-    </AuthContext.Provider>
-  )
+  if (state.pending.get()) {
+    return (
+      <div className='fullWidthVw fullHeightVh centerElementH'>
+        <Spin />
+      </div>
+    )
+  }
+
+  return <div>{children}</div>
 }

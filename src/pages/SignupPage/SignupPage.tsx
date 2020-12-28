@@ -1,5 +1,5 @@
 import { Row, Col, Form, Input, Button, Divider, Typography } from 'antd'
-import React, { useCallback, useContext } from 'react'
+import React, { useCallback } from 'react'
 import {
   LockOutlined,
   FormOutlined,
@@ -11,12 +11,15 @@ import {
 import PersonalGoalImg from './assets/personalGoal.svg'
 import app from '../../firebase/FirebaseContext'
 import { Redirect, withRouter } from 'react-router'
-import { AuthContext } from '../../firebase/Auth'
 import '../../style/global.css'
+import { useState } from '@hookstate/core'
+import globalState from '../../state/GlobalState'
 
 const { Title } = Typography
 
 const SignupPage = ({ history }: any) => {
+  const state = useState(globalState)
+
   const handleSignup = useCallback(
     async (event: any) => {
       console.log(event)
@@ -40,9 +43,7 @@ const SignupPage = ({ history }: any) => {
     console.log('Failed:', errorInfo)
   }
 
-  const { currentUser } = useContext(AuthContext)
-
-  if (currentUser) {
+  if (state.currentUser.get()) {
     return <Redirect to='/userhome' />
   }
 

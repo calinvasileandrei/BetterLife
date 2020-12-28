@@ -55,3 +55,12 @@
   align-items: center;
   vertical-align: space-around;
 }
+
+.bottomAlign {
+  display: inline-block;
+  align-self: flex-end;
+}
+.centerAlign {
+  display: inline-block;
+  align-self: center;
+}

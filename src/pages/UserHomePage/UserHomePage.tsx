@@ -1,23 +1,31 @@
 import React from 'react'
-import { Layout, Button } from 'antd'
+import { Layout, Space } from 'antd'
 import { NavMenu } from '../../components/NavMenu'
 import './UserHomePage.css'
 import { Row, Col, Typography, Progress, Card } from 'antd'
 import { HeaderMenu } from '../../components/HeaderMenu'
-import { Redirect } from 'react-router'
+import { withRouter } from 'react-router'
 import app from '../../firebase/FirebaseContext'
 import '../../style/global.css'
+import { useState } from '@hookstate/core'
+import globalState from '../../state/GlobalState'
 
-const { Header, Content, Footer, Sider } = Layout
+const { Header, Content, Sider } = Layout
 const { Title } = Typography
-const gradient = { '0%': '#108ee9', '100%': '#87d068' }
-const bottomAlign = { display: 'inline-block', alignSelf: 'flex-end' }
-const centerAlign = { display: 'inline-block', alignSelf: 'flex-center' }
 
-export const UserHomePage = () => {
+const gradient = { '0%': '#108ee9', '100%': '#87d068' }
+
+const UserHomePage = ({ history }: any) => {
+  const state = useState(globalState)
+
   const signout = () => {
-    app.auth().signOut()
-    return <Redirect to='/' />
+    app
+      .auth()
+      .signOut()
+      .then(() => {
+        state.currentUser.set(null)
+        history.push('/')
+      })
   }
   return (
     <Layout>
@@ -32,7 +40,8 @@ export const UserHomePage = () => {
           <div
             className='centerElementH fullWidth'
             style={{
-              margin: 10,
+              marginBottom: 20,
+              paddingBottom: 10,
             }}
           >
             <a onClick={signout}>Signout</a>
@@ -49,38 +58,38 @@ export const UserHomePage = () => {
             <Col className='gutter-row' span={14}>
               <div className='progress-style'>
                 <Title>Macros&Calories</Title>
-                <Row
-                  gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}
-                  style={{ marginBottom: 32 }}
-                >
-                  <Col style={bottomAlign}>
-                    <Progress
-                      strokeColor={gradient}
-                      type='circle'
-                      percent={75}
-                    />
-                  </Col>
-                  <Col>
-                    <Progress
-                      width={140}
-                      strokeColor={gradient}
-                      type='circle'
-                      percent={99}
-                    />
-                  </Col>
-                  <Col style={bottomAlign}>
-                    <Progress
-                      strokeColor={gradient}
-                      type='circle'
-                      percent={80}
-                    />
-                  </Col>
+                <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
+                  <Space size='large'>
+                    <Col className='bottomAlign'>
+                      <Progress
+                        strokeColor={gradient}
+                        type='circle'
+                        percent={75}
+                      />
+                    </Col>
+                    <Col>
+                      <Progress
+                        width={140}
+                        strokeColor={gradient}
+                        type='circle'
+                        percent={99}
+                      />
+                    </Col>
+                    <Col className='bottomAlign'>
+                      <Progress
+                        strokeColor={gradient}
+                        type='circle'
+                        percent={80}
+                      />
+                    </Col>
+                  </Space>
                 </Row>
               </div>
               <div className='scrollabel-list'>
                 <Card
                   title='Breakfast'
-                  /*extra={<a href="#">More</a>}*/ className='custom-card'
+                  extra={<a onClick={() => console.log('other')}>More</a>}
+                  className='custom-card'
                 >
                   <p>Card content</p>
                   <p>Card content</p>
@@ -121,3 +130,5 @@ export const UserHomePage = () => {
     </Layout>
   )
 }
+
+export default withRouter(UserHomePage)
