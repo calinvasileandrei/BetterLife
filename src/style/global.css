@@ -64,3 +64,8 @@
   display: inline-block;
   align-self: center;
 }
+
+.custom-card {
+  border-radius: 12px;
+  margin: 10px;
+}

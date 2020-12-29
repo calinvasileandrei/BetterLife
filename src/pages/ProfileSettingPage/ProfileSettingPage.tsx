@@ -1,6 +1,20 @@
 import React from 'react'
-import { Layout, Menu, Breadcrumb, Typography } from 'antd'
+import {
+  Layout,
+  Menu,
+  Breadcrumb,
+  Typography,
+  Card,
+  Form,
+  Input,
+  Button,
+  DatePicker,
+} from 'antd'
 import './ProfileSettingPage.css'
+import { gradientBegin, gradientEnd, primaryColor } from '../../style/global'
+import { UserInfoCardFirst } from './insideComponents/UserInfoCardFirst'
+import { UserInfoCardSecond } from './insideComponents/UserInfoCardSecond'
+import { UserInfoCardThird } from './insideComponents/UserInfoCardThird'
 
 const { Header, Content, Footer } = Layout
 const { Title } = Typography
@@ -8,43 +22,64 @@ const { Title } = Typography
 export const ProfileSettingPage = () => {
   return (
     <div>
-      <Layout>
-        <Header style={{ position: 'fixed', top: 0, zIndex: 1, width: '100%' }}>
+      <Layout style={{ height: '100vh' }}>
+        <Header
+          style={{ position: 'absolute', top: 0, zIndex: 2, width: '100%' }}
+        >
           <div className='logo'>
             <Title level={2} style={{ color: 'white' }}>
               BetterLife
             </Title>
           </div>
-          <Menu
-            theme='dark'
-            mode='horizontal'
-            selectable={false}
-            defaultSelectedKeys={['2']}
-          >
-            <Menu.Item key='1'>Your Data</Menu.Item>
-            <Menu.Item key='2'>nav 2</Menu.Item>
-            <Menu.Item key='3'>nav 3</Menu.Item>
-          </Menu>
         </Header>
         <Content
           className='mysite-layout'
-          style={{ padding: '50px', paddingTop: 0, marginTop: 64 }}
+          style={{
+            paddingTop: 0,
+            marginTop: 64,
+            height: '100%',
+          }}
         >
-          <Breadcrumb style={{ margin: '16px 0' }}>
-            <Breadcrumb.Item>User</Breadcrumb.Item>
-            <Breadcrumb.Item>Creating</Breadcrumb.Item>
-            <Breadcrumb.Item>Profile</Breadcrumb.Item>
-          </Breadcrumb>
           <div
             className='site-layout-background'
-            style={{ padding: 24, minHeight: 380 }}
+            style={{
+              padding: 24,
+              height: '100%',
+              background: `linear-gradient(to top, ${gradientBegin}, ${primaryColor})`,
+            }}
           >
-            content forms
+            <Title style={{ color: 'white' }}>Hello There 👋</Title>
+            <UserInfoCardFirst
+              mystyle={{ position: 'absolute', top: 150, left: 20 }}
+            />
+            <Title
+              style={{
+                color: 'white',
+                position: 'absolute',
+                top: 250,
+                left: 500,
+              }}
+            >
+              Well, Let's continue!💪🏻
+            </Title>
+            <UserInfoCardSecond
+              mystyle={{ position: 'absolute', top: 300, left: 500 }}
+            />
+            <UserInfoCardThird
+              mystyle={{ position: 'absolute', top: 100, left: 1000 }}
+            />
+            <Title
+              style={{
+                color: 'white',
+                position: 'absolute',
+                top: 400,
+                left: 1000,
+              }}
+            >
+              We are done ! 🎉
+            </Title>
           </div>
         </Content>
-        <Footer style={{ textAlign: 'center' }}>
-          Ant Design ©2018 Created by Ant UED
-        </Footer>
       </Layout>
     </div>
   )

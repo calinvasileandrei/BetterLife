@@ -43,8 +43,3 @@
   overflow-y: scroll;
   max-height: 512px;
 }
-
-.custom-card {
-  border-radius: 12px;
-  margin: 10px;
-}

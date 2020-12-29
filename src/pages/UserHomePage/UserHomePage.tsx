@@ -9,11 +9,11 @@ import app from '../../firebase/FirebaseContext'
 import '../../style/global.css'
 import { useState } from '@hookstate/core'
 import globalState from '../../state/GlobalState'
-
+import { gradientBegin, gradientEnd } from '../../style/global'
 const { Header, Content, Sider } = Layout
 const { Title } = Typography
 
-const gradient = { '0%': '#108ee9', '100%': '#87d068' }
+const gradient = { '0%': gradientBegin, '100%': gradientEnd }
 
 const UserHomePage = ({ history }: any) => {
   const state = useState(globalState)
